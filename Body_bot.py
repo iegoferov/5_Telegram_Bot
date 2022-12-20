@@ -46,11 +46,11 @@ def get_rate(message):
     else:
         if quote == usd_value[0]:
             quote = usd_value[1]
-        elif quote == rub_value[0]:
+        if quote == rub_value[0]:
             quote = rub_value[1]
-        elif base == usd_value[0]:
+        if base == usd_value[0]:
             base = usd_value[2]
-        elif base == rub_value[0]:
+        if base == rub_value[0]:
             base = rub_value[2]
 
         bot.send_message(message.chat.id, f'Число {quote.upper()} в {base.upper()} = {price}')

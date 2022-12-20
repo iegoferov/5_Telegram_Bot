@@ -65,6 +65,10 @@ class Get_Price:
             quote_ = Get_Rate.get_rate(quote)
             price = (base_ * float(amount)) / quote_
             return price
+
+        elif base == 'рубль' and quote == 'рубль':
+            price = float(amount)
+            return price
 class Bot_Exception(Exception):
     pass
 
