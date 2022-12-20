@@ -72,6 +72,17 @@ class Get_Price:
 class Bot_Exception(Exception):
     pass
 
+# Функция проверки, строка float
+def is_digit(string):
+    if string.isdigit():
+       return True
+    else:
+        try:
+            float(string)
+            return True
+        except ValueError:
+            return False
+
 if __name__ == '__main__':
     print(Read_Token.read_token())
     print(Get_Rate.get_rate('USD'))

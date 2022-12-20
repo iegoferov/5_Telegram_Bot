@@ -1,4 +1,4 @@
-from extensions import Read_Token, Get_Price, Bot_Exception
+from extensions import Read_Token, Get_Price, Bot_Exception, is_digit
 import telebot
 
 
@@ -25,6 +25,7 @@ def send_values(message):
 @bot.message_handler(content_types=['text'])
 def get_rate(message):
     value = message.text.split(' ')
+    value[2] = value[2].replace(',', '.')
     try:
         if len(value) != 3:
             raise Bot_Exception (f'Введено некоректное число параметров, равное {len(value)}, выполните команду /help')
@@ -33,7 +34,7 @@ def get_rate(message):
             raise Bot_Exception(f'Название валюты: {base.upper()} введено некорректно, выполните команду /help')
         elif quote not in bot_value:
             raise Bot_Exception(f'Название валюты: {quote.upper()} введено некорректно, выполните команду /help')
-        elif not amount.isdigit():
+        elif not is_digit(amount):
             raise Bot_Exception(f'Количество валюты: {amount.upper()} введено некорректно, выполните команду /help')
         price = Get_Price.get_price(base, quote, amount)
 
@@ -42,6 +43,7 @@ def get_rate(message):
 
     except Exception as e:
         bot.reply_to(message, f'Произошла непредвиденая ошибка {e}')
+
 
     else:
         if quote == usd_value[0]:
