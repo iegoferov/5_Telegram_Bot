@@ -48,7 +48,6 @@ class Get_Rate():
 
 # Конвертер валют
 class Get_Price:
-
     @staticmethod
     def get_price(base, quote, amount):
         if (base == 'доллар' or base == 'евро') and quote == 'рубль':
