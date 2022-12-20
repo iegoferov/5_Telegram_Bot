@@ -34,7 +34,7 @@ def get_rate(message):
         elif quote not in bot_value:
             raise Bot_Exception(f'Название валюты: {quote.upper()} введено некорректно, выполните команду /help')
         elif not amount.isdigit():
-            raise Bot_Exception((bot.send_message(message.chat.id, f'Количество валюты: {amount} введено некорректно, выполните команду /help')))
+            raise Bot_Exception(f'Количество валюты: {amount.upper()} введено некорректно, выполните команду /help')
         price = Get_Price.get_price(base, quote, amount)
 
     except Bot_Exception as e:
