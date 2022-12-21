@@ -25,10 +25,11 @@ def send_values(message):
 @bot.message_handler(content_types=['text'])
 def get_rate(message):
     value = message.text.split(' ')
-    value[2] = value[2].replace(',', '.')
+
     try:
         if len(value) != 3:
             raise Bot_Exception (f'Введено некоректное число параметров, равное {len(value)}, выполните команду /help')
+        value[2] = value[2].replace(',', '.')
         base, quote, amount = value[0].lower(), value[1].lower(), value[2]
         if base not in bot_value:
             raise Bot_Exception(f'Название валюты: {base.upper()} введено некорректно, выполните команду /help')
